@@ -1,0 +1,43 @@
+Staff model (Library, COD, Hostels etc)
+
+id = Integer
+email = String
+first_name = String
+last_name = String
+role =String
+sex = String
+id_number = Integer
+created_at = Date
+
+
+Student model
+
+id = Integer
+email = String
+first_name = String
+last_name = String
+role =String
+sex = String
+id_number = Integer
+school = String
+department = String
+program = String
+academic_year = String
+year = Date
+
+
+Clearance
+
+student = ForeignKey(Student)        
+status = String
+completed = Boolean
+initiated_at = Date
+
+
+Review
+
+clearance = OneToManyField(Clearance)
+reviewer = ForeignKey(Staff)
+approved = Boolean
+reason = String
+date = Date

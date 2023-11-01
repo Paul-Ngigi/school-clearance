@@ -1,0 +1,30 @@
+{% include "common/base.html" %} {% load static %} {% block content %}
+<div
+  class="container mt-5"
+  style="
+    background-image: (static 'images/reading.png');
+    height: 100vh;
+  "
+>
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center fs-1 fw-bold">
+        Your Clearance & Plans Unified. <br />
+        Welcome to
+        <span class="text-underline">Clearance</span>
+      </h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <p class="text-center fs-2">
+        Clearance is the connected workspace where <br />
+        better, faster student clearance happens.
+      </p>
+    </div>
+  </div> 
+  <div class="row mt-3">
+    <img src="{% static 'images/reading.png' %}" alt="reading" height="500" width="300"/>
+  </div>
+</div>
+{% endblock content %}

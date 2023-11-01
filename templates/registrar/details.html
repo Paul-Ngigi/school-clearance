@@ -1,0 +1,42 @@
+{% extends 'registrar/base.html' %} {% block content %}
+<div class="container my-5">
+  <div class="row">
+    <div class="mt-3">
+      <div class="card col-md-12">
+        <div class="card-body p-5">
+          <div class="col-sm-12 my-auto">
+            <h5 class="fw-bold">Registrar Details</h5>
+          </div>
+          <div class="row mt-2">            
+            <div class="col-md-4">
+              <div class="fw-bold">Email</div>
+              <div>{{user.email}}</div>
+            </div>
+            <div class="col-md-4">
+              <div class="fw-bold">First Name</div>
+              <div>{{user.first_name}}</div>
+            </div>
+            <div class="col-md-4">
+              <div class="fw-bold">Last Name</div>
+              <div>{{user.last_name}}</div>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-md-4">
+              <div class="fw-bold">Sex</div>
+              <div>{{user.sex}}</div>
+            </div>
+            <div class="col-md-4">
+              <div class="fw-bold">ID Number</div>
+              <div>{{user.id_number}}</div>
+            </div>
+          </div>          
+          <div class="mt-3">
+            <button class="btn btn-outline-dark">Review Clearance</button>            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'common/base.html' %} {% block content %} {% load crispy_forms_tags%}
+<div class="container mt-5">
+  <div class="row mt-5">
+    <div class="panel panel-default" style="align-self: center">      
+      <h3>Register</h3>
+      <div class="panel-body">
+        <form action="{% url 'signup_view'%}" style="width: 100%" method="post">
+          {% csrf_token %}
+          <div class="row">            
+            <div class="col-md-4">
+              {{ form.first_name| as_crispy_field }}
+            </div>
+            <div class="col-md-4">
+              {{ form.last_name| as_crispy_field }}
+            </div>
+            <div class="col-md-4">
+              {{ form.email| as_crispy_field }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              {{ form.password1| as_crispy_field }}
+            </div>
+            <div class="col-md-6">
+              {{ form.password2| as_crispy_field }}
+            </div>            
+          </div>
+          <div class="row">           
+            <div class="col-md-4">
+              {{ form.id_number| as_crispy_field }}
+            </div>
+            <div class="col-md-4">
+              {{ form.role| as_crispy_field }}
+            </div>
+            <div class="col-md-4">
+              {{ form.sex| as_crispy_field }}
+            </div>
+          </div>
+          <div class="form-group">
+            <input
+              type="submit"
+              class="btn btn-primary btn-sm"
+              value="Sign Up"
+            />
+          </div>         
+          <div class="">
+            <p class="text-muted">
+              Already have an account?
+              <a href="{% url 'login_view'%}">Login</a>
+            </p>
+          </div>          
+        </form>
+      </div>
+      <div>
+        {% if form.non_field_errors %}
+        <div class="alert alert-danger" role="alert">
+          {{ form.non_field_errors }}
+        </div>
+        {% endif%}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
