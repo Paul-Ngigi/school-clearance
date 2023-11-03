@@ -6,7 +6,7 @@ from .forms import StudentSignUpForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import Student
-from clearance.models import Clearance
+from clearance.models import Clearance, Review
 
 # Create your views here.        
 class ProfileView(View):
@@ -87,10 +87,12 @@ class ClearanceListView(View):
 def clearanceDetails(request, pk):                      
     user = request.user        
     student = Student.find_student_by_email(user.email)     
-    clearance = Clearance.objects.get(id=pk)        
+    clearance = Clearance.objects.get(id=pk)   
+    reviews = Review.objects.filter(id=pk)   
     context = {
         'student': student,
-        'clearance': clearance
+        'clearance': clearance,
+        'reviews': reviews
     }
     return render(request, 'students/clearance-details.html', context)
         

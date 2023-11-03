@@ -1,6 +1,6 @@
 {% extends 'students/base.html' %} {% block content %}
 <div class="container my-5">
-  <h2>Profile</h2>
+  <h2>Dashboard</h2>
   <div class="row">
     <div class="mt-3">
       <div class="card col-md-12">
@@ -64,13 +64,10 @@
             </div>
           </div>
 
-          <div class="mt-3">            
+          <div class="mt-5">            
             <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModal">
               Initiate Clearance
-            </button>
-            {% if clearances > 0 %}
-            <a class="btn btn-outline-dark"  href="{% url 'student_list_clearance_view' %}">My Clearance</a>
-            {% endif %}            
+            </button>            
           <!-- Modal -->
           <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">

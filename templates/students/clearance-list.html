@@ -43,7 +43,27 @@
                 </table>
             {% else %}
                 <h5 class="mt-3">You have not initiated a clearance review yet</h5>                  
-                <a class="btn btn-outline-dark mt-2">Initiate one now</a>
+                <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModal">
+                  Initiate Clearance
+                </button>            
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Initiate Clearance</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Are you sure?</p>                  
+                      <a class="btn btn-outline-primary" href="{% url 'student_initiate_clearance_view' %}">Yes</a>            
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    </div>                
+                  </div>
+                </div>
+              </div>
             {% endif %}
           </div>
         </div>

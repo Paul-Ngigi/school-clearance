@@ -16,3 +16,10 @@ class DetailsView(View):
             'user': user
         }    
         return render(request, self.template_name, context)   
+    
+    
+def initiateClearance(request, pk):
+    try:
+        pass
+    except Exception as e:
+        print(e)
