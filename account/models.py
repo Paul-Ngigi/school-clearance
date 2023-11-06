@@ -23,7 +23,7 @@ class User(AbstractUser):
     role = models.CharField(choices=ROLE_CHOICES, max_length=30)
     sex = models.CharField(choices=GENDER_CHOICES, max_length=8)
     id_number = models.IntegerField(default=0)                
-    username = None
+    username = models.CharField(max_length=30, blank=True)
     
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['']
