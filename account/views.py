@@ -60,62 +60,68 @@ class SignInView(View):
                 user = authenticate(request, username=email, password=password)                                                                                                        
                 if user is not None:                                       
                     user_roles = user.role                    
-                    if user_roles == 'CHAIRMAN_OF_DEPARTMENT':                                                      
-                        if not CHAIRMAN_OF_DEPARTMENT.objects.filter(user=user).exists():
-                           CHAIRMAN_OF_DEPARTMENT.objects.create(user=user)
-                           login(request, user)
-                           return redirect('cod_details_view')
-                        else:
-                            login(request, user)
+                    if user_roles == 'CHAIRMAN_OF_DEPARTMENT': 
+                        cod = CHAIRMAN_OF_DEPARTMENT.find_cod_by_email(email)    
+                        if cod is not None:  
+                            login(request, user)                                              
                             return redirect('cod_details_view')
-                    elif user_roles == 'LIBRARY':                                                      
-                        if not LIBRARY.objects.filter(user=user).exists():
-                           LIBRARY.objects.create(user=user)
-                           login(request, user)
-                           return redirect('library_details_view')
                         else:
+                            CHAIRMAN_OF_DEPARTMENT.objects.create(user=user)
                             login(request, user)
-                            return redirect('library_details_view') 
-                    elif user_roles == 'SPORTS_AND_ENTERTAINMENT':                                                      
-                        if not SPORTS_AND_ENTERTAINMENT.objects.filter(user=user).exists():
-                           SPORTS_AND_ENTERTAINMENT.objects.create(user=user)
-                           login(request, user)
-                           return redirect('sae_details_view')
+                            return redirect('cod_details_view')                                                                             
+                    elif user_roles == 'LIBRARY':    
+                        library = LIBRARY.find_library_by_email(email)    
+                        if library is not None:  
+                            login(request, user)                                              
+                            return redirect('library_details_view')
                         else:
+                            LIBRARY.objects.create(user=user)
                             login(request, user)
+                            return redirect('library_details_view')                                                                          
+                    elif user_roles == 'SPORTS_AND_ENTERTAINMENT':   
+                        sae = SPORTS_AND_ENTERTAINMENT.find_sae_by_email(email)    
+                        if sae is not None:  
+                            login(request, user)                                              
                             return redirect('sae_details_view')
-                    elif user_roles == 'HOSTELS':                                                      
-                        if not HOSTEL.objects.filter(user=user).exists():
-                           HOSTEL.objects.create(user=user)
-                           login(request, user)
-                           return redirect('hostel_details_view')
                         else:
+                            SPORTS_AND_ENTERTAINMENT.objects.create(user=user)
                             login(request, user)
+                            return redirect('sae_details_view')                                                                          
+                    elif user_roles == 'HOSTELS':              
+                        hostel = HOSTEL.find_hostel_by_email(email)    
+                        if hostel is not None:  
+                            login(request, user)                                              
                             return redirect('hostel_details_view')
-                    elif user_roles == 'FINANCE':                                                      
-                        if not FINANCE.objects.filter(user=user).exists():
-                           FINANCE.objects.create(user=user)
-                           login(request, user)
-                           return redirect('finance_details_view')
                         else:
+                            HOSTEL.objects.create(user=user)
                             login(request, user)
+                            return redirect('hostel_details_view')                                                                
+                    elif user_roles == 'FINANCE':  
+                        finance = FINANCE.find_finance_by_email(email)    
+                        if finance is not None:  
+                            login(request, user)                                              
                             return redirect('finance_details_view')
-                    elif user_roles == 'DEAN_OF_STUDENTS':                                                      
-                        if not DEAN_OF_STUDENTS.objects.filter(user=user).exists():
-                           DEAN_OF_STUDENTS.objects.create(user=user)
-                           login(request, user)
-                           return redirect('dos_details_view')
                         else:
+                            FINANCE.objects.create(user=user)
                             login(request, user)
+                            return redirect('finance_details_view')                                                                                                                                                
+                    elif user_roles == 'DEAN_OF_STUDENTS':  
+                        dos = CHAIRMAN_OF_DEPARTMENT.find_cod_by_email(email)    
+                        if dos is not None:  
+                            login(request, user)                                              
                             return redirect('dos_details_view')
-                    elif user_roles == 'REGISTRAR':                                                      
-                        if not REGISTRAR.objects.filter(user=user).exists():
-                           REGISTRAR.objects.create(user=user)
-                           login(request, user)
-                           return redirect('registrar_details_view')
                         else:
                             login(request, user)
-                            return redirect('registrar_details_view')                                        
+                            return redirect('dos_details_view')                                                                            
+                    elif user_roles == 'REGISTRAR':       
+                        registrar = REGISTRAR.find_registrar_by_email(email)    
+                        if registrar is not None:  
+                            login(request, user)                                              
+                            return redirect('registrar_details_view')
+                        else:
+                            REGISTRAR.objects.create(user=user)
+                            login(request, user)
+                            return redirect('registrar_details_view')                                                                                                          
                     elif user_roles == 'STUDENT':                                                      
                         student = Student.find_student_by_email(email) 
                         if student is not None:  

@@ -6,7 +6,7 @@ class DEAN_OF_STUDENTS(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)    
     
     def __str__(self):
-        return self.user.username
+        return self.user.email
 
     def save(self, *args, **kwargs):
         """
@@ -15,9 +15,9 @@ class DEAN_OF_STUDENTS(models.Model):
         super().save(*args, **kwargs)
 
     @classmethod
-    def find_dos_by_username(cls, username):
+    def find_dos_by_email(cls, email):
         try:
-            dos = cls.objects.get(user__username=username)
+            dos = cls.objects.get(user__email=email)
             return dos
         except cls.DoesNotExist:
             return None

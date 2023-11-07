@@ -6,7 +6,7 @@ class HOSTEL(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)    
     
     def __str__(self):
-        return self.user.username
+        return self.user.email
 
     def save(self, *args, **kwargs):
         """
@@ -15,9 +15,9 @@ class HOSTEL(models.Model):
         super().save(*args, **kwargs)
 
     @classmethod
-    def find_hostel_by_username(cls, username):
+    def find_hostel_by_email(cls, email):
         try:
-            hostel = cls.objects.get(user__username=username)
+            hostel = cls.objects.get(user__email=email)
             return hostel
         except cls.DoesNotExist:
             return None
