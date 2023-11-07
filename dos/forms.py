@@ -1,5 +1,5 @@
 from django import forms
-from clearance.models import Clearance, Review
+from clearance.models import Review
 
 
 class ReviewForm(forms.ModelForm):           
