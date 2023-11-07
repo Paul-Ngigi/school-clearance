@@ -91,7 +91,7 @@ class SignInView(View):
                         hostel = HOSTEL.find_hostel_by_email(email)    
                         if hostel is not None:  
                             login(request, user)                                              
-                            return redirect('hostel_details_view')
+                            return redirect('hostels_details_view')
                         else:
                             HOSTEL.objects.create(user=user)
                             login(request, user)

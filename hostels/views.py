@@ -7,7 +7,7 @@ from .forms import ReviewForm
 
 # Create your views here.             
 class DetailsView(View):
-    template_name = 'registrar/details.html'
+    template_name = 'hostels/details.html'
     title = 'Details'
 
     @method_decorator(login_required)
@@ -21,7 +21,7 @@ class DetailsView(View):
     
     
 class ClearanceList(View):
-    template_name = 'registrar/clearance-list.html'
+    template_name = 'hostels/clearance-list.html'
     title = 'Details'
 
     @method_decorator(login_required)
@@ -41,19 +41,19 @@ def clearanceDetails(request, pk):
     hasBeenReviewed = False
     if len(reviews) > 0:
         for review in reviews:
-            if review.reviewer.role == 'REGISTRAR':
+            if review.reviewer.role == 'hostels':
                 hasBeenReviewed = True            
     context = {        
         'clearance': clearance,
         'reviews': reviews,
         'hasBeenReviewed': hasBeenReviewed
     }
-    return render(request, 'registrar/clearance-details.html', context)
+    return render(request, 'hostels/clearance-details.html', context)
 
 
 def initiateReview(request, pk):
     form = ReviewForm()      
-    template_name = 'registrar/review.html'
+    template_name = 'hostels/review.html'
     title = 'Review'
         
     form = ReviewForm(request.POST or None)    
@@ -68,7 +68,7 @@ def initiateReview(request, pk):
 
 def reviewClearance(request):
     form = ReviewForm(request.POST or None)      
-    template_name = 'registrar/review.html'
+    template_name = 'hostels/review.html'
     title = 'Review'
     print('clicked')
         

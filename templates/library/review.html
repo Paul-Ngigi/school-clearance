@@ -1,11 +1,11 @@
-{% extends 'finance/base.html' %} {% block content %}
+{% extends 'library/base.html' %} {% block content %}
 <div class="container my-5">
   <div class="row">
     <h4 class="fw-bold">Review Clearance</h4>
     <div class="mt-3">
       <div class="card col-md-12">
         <div class="card-body p-5">
-          <form action="{% url 'review_clearance_view' %}">
+          <form action="{% url 'library_review_clearance_view' %}">
             {% csrf_token %}
             <div class="row">
               <div class="col-md-12 mb-3">

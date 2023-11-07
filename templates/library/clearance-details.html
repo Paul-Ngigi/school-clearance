@@ -1,4 +1,4 @@
-{% extends 'finance/base.html' %} {% block content %}
+{% extends 'library/base.html' %} {% block content %}
 <div class="container my-5">
   <div class="row">
     <h4 class="fw-bold">Clearance Details</h4>
@@ -30,7 +30,7 @@
           <div class="row">
             {% if not hasBeenReviewed %}
             <div class="col-md-4">
-              <a href="{% url 'initiate_view' pk=clearance.id %}" class="btn btn-outline-dark">Initiate Review</a>
+              <a href="{% url 'library_initiate_view' pk=clearance.id %}" class="btn btn-outline-dark">Initiate Review</a>
             </div>
             {% else %}
             <div class="col-md-4">
