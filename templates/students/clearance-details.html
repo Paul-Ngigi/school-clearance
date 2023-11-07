@@ -33,7 +33,6 @@
             {% if reviews|length > 0 %}
             <div class="card">
               <div class="card-body">
-                {% for review in reviews %}
                 <table class="table mt-3">
                   <thead>
                   <tr>                      
@@ -60,12 +59,11 @@
                           {% else %}
                           <td>No</td>
                           {% endif %}                          
-                          <td><a href="clearance-details/{{clearance.id}}">></a></td>
+                          <td><a href="{% url 'student_review_view' pk=review.id %}">></a></td>
                       </tr>                  
                       {% endfor %}                    
                   </tbody>
-              </table>
-                {% endfor %}
+              </table>                
               </div>
             </div>
             {% else %}

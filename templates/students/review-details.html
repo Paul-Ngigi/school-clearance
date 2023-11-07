@@ -1,0 +1,58 @@
+{% extends 'students/base.html' %} {% block content %}
+<div class="container my-5">
+  <div class="row">
+    <div class="col-sm-12 my-auto">
+      <h5 class="fw-bold">Clearance Review</h5>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="card">
+      <div class="card-body p-5">
+        <h5 class="fw-bold">Reviewer Details</h5>
+        <div class="row mt-3">          
+          <div class="col-md-4">
+            <div class="fw-bold">Email</div>
+            <div>{{review.reviewer.email}}</div>
+          </div>
+          <div class="col-md-4">
+            <div class="fw-bold">Full Name</div>
+            <div>{{review.reviewer.first_name}} {{review.reviewer.last_name}}</div>
+          </div>
+          <div class="col-md-4">
+            <div class="fw-bold">Role</div>
+            <div>{{review.reviewer.role}}</div>
+          </div>
+        </div>
+        <hr>
+        <h5 class="fw-bold">Review Details</h5>
+        <div class="row mt-3">          
+          <div class="col-md-4 mb-3">
+            <div class="fw-bold">Date</div>
+            <div>{{review.created_at}}</div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="fw-bold">Approved</div>
+            {% if review.approved %}
+            <div>Yes</div>
+            {% else %}
+            <div>No</div>
+            {% endif %}
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="fw-bold">Rejected</div>
+            {% if review.rejected %}
+            <div>Yes</div>
+            {% else %}
+            <div>No</div>
+            {% endif %}
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="fw-bold">Reason</div>
+            <div>{{review.reason}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

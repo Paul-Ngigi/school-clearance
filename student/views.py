@@ -75,7 +75,7 @@ class ClearanceListView(View):
     def get(self, request, *args, **kwargs):                      
         user = request.user        
         student = Student.find_student_by_email(user.email)     
-        clearances = Clearance.objects.filter(student=student)
+        clearances = Clearance.objects.filter(student=student).order_by('-initiated_at')
         context = {
             'title': self.title,                        
             'clearances': clearances
@@ -88,13 +88,22 @@ def clearanceDetails(request, pk):
     user = request.user        
     student = Student.find_student_by_email(user.email)     
     clearance = Clearance.objects.get(id=pk)   
-    reviews = Review.objects.filter(id=pk)   
+    reviews = Review.objects.filter(clearance_id=pk).order_by('-created_at') 
+    print(len(reviews))
     context = {
         'student': student,
         'clearance': clearance,
         'reviews': reviews
     }
     return render(request, 'students/clearance-details.html', context)
+
+def reviewDetails(request, pk):        
+    review = Review.objects.get(id=pk)       
+    context = {        
+        'review': review
+    }
+    return render(request, 'students/review-details.html', context)
+    
         
     
         

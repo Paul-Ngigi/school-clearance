@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import ProfileView, DetailsView, InitiateClearance, ClearanceListView, clearanceDetails
+from .views import ProfileView, DetailsView, InitiateClearance, ClearanceListView, clearanceDetails, reviewDetails
 
 urlpatterns = [    
     path('profile', ProfileView.as_view(), name='student_profile_view'),        
@@ -7,4 +7,5 @@ urlpatterns = [
     path('initiate-clearance', InitiateClearance.as_view(), name='student_initiate_clearance_view'),        
     path('clearance-list', ClearanceListView.as_view(), name='student_list_clearance_view'),
     path('clearance-details/<pk>', clearanceDetails, name='student_clearance_details_view'),
+    path('review-details/<pk>', reviewDetails, name='student_review_view'),
 ]
