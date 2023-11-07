@@ -1,4 +1,4 @@
-{% extends 'finance/base.html' %} {% block content %}
+{% extends 'registrar/base.html' %} {% block content %}
 <div class="container my-5">
   <div class="row">
     <h4 class="fw-bold">Clearance Details</h4>
@@ -30,7 +30,7 @@
           <div class="row">
             {% if not hasBeenReviewed %}
             <div class="col-md-4">
-              <a href="{% url 'initiate_view' pk=clearance.id %}" class="btn btn-outline-dark">Initiate Review</a>
+              <a href="{% url 'registrar_initiate_view' pk=clearance.id %}" class="btn btn-outline-dark">Initiate Review</a>
             </div>
             {% else %}
             <div class="col-md-4">
@@ -73,7 +73,7 @@
                           {% else %}
                           <td>No</td>
                           {% endif %}                          
-                          <td><a href="clearance-details/{{clearance.id}}">></a></td>
+                          <td><a href="{% url 'registrar_clearance_details_view' pk=review.id %}">></a></td>
                       </tr>                  
                       {% endfor %}                    
                   </tbody>
