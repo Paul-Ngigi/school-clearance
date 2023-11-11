@@ -7,7 +7,11 @@
         <div class="card-body p-5">
           <form action="{% url 'registrar_review_clearance_view' %}">
             {% csrf_token %}
-            <div class="row">
+            {{ form }}
+            <div class="col-md-4">
+              <button class="btn btn-outline-primary" type="submit">Submit</button>
+            </div>
+            <!-- <div class="row">
               <div class="col-md-12 mb-3">
                 <div class="form-check">
                   <input
@@ -43,11 +47,8 @@
                   id="reason"
                   rows="3"
                 ></textarea>
-              </div>
-              <div class="col-md-4">
-                <button class="btn btn-outline-primary" type="submit">Submit</button>
-              </div>
-            </div>
+              </div>              
+            </div> -->
           </form>
         </div>
       </div>

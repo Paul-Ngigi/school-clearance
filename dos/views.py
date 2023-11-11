@@ -26,7 +26,7 @@ class ClearanceList(View):
     @method_decorator(login_required)
     def get(self, request, *args, **kwargs):                      
         user = request.user       
-        clearances = Clearance.objects.all()            
+        clearances = Clearance.objects.all().order_by('-initiated_at')            
         context = {
             'title': self.title,            
             'user': user,
