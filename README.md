@@ -23,3 +23,6 @@ To get the code..
   python manage.py runserver
   ```
 Open the application on your browser `127.0.0.1:8000`.
+
+
+Error: Command '['C:\\Users\\user\\Documents\\project\\school-clearance\\virtual\\Scripts\\python.exe', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.   

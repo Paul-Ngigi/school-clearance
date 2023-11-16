@@ -8,5 +8,5 @@ class ReviewForm(forms.ModelForm):
     rejected = forms.CharField(label='Reject', widget=forms.RadioSelect(choices=bools))
     class Meta:
         model = Review
-        fields = ['approved', 'rejected', 'reason']        
+        fields = ['approved', 'reason']        
             

@@ -16,8 +16,8 @@ class ClearanceAdmin(admin.ModelAdmin):
         return obj.student.user.last_name
 
 class ReviewAdmin(admin.ModelAdmin):    
-    list_display = ('student_email', 'reviewer_email', 'reviewer_role', 'approved', 'rejected', 'created_at')
-    search_fields = ['student__email', 'reviewer_email', 'reviewer_role', 'approved', 'approved', 'rejected']
+    list_display = ('student_email', 'reviewer_email', 'reviewer_role', 'approved','created_at')
+    search_fields = ['student__email', 'reviewer_email', 'reviewer_role']
 
     def student_email(self, obj):
         return obj.clearance.student.user.email

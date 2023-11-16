@@ -21,7 +21,6 @@ class Clearance(models.Model):
 class Review(models.Model):
     clearance = models.ForeignKey(Clearance, on_delete=models.CASCADE)
     reviewer = models.ForeignKey(User, on_delete=models.CASCADE)
-    approved = models.BooleanField(default=False)
-    rejected = models.BooleanField(default=False)
+    approved = models.BooleanField(default=False)    
     reason = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
