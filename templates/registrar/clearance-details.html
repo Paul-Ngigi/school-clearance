@@ -30,7 +30,7 @@
           <div class="row">
             <div class="col-md-4">
               <a
-                href="{% url 'registrar_initiate_view' pk=clearance.id %}"
+                href="{% url 'registrar_review_view' pk=clearance.id %}"
                 class="btn btn-outline-dark"
                 >Initiate Review</a
               >
@@ -42,7 +42,6 @@
             {% if reviews|length > 0 %}
             <div class="card">
               <div class="card-body">
-                {% for review in reviews %}
                 <table class="table mt-3">
                   <thead>
                     <tr>
@@ -69,7 +68,6 @@
                     {% endfor %}
                   </tbody>
                 </table>
-                {% endfor %}
               </div>
             </div>
             {% else %}

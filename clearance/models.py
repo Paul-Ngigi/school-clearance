@@ -19,8 +19,12 @@ class Clearance(models.Model):
             return None            
     
 class Review(models.Model):
+    choices = (
+        ('Yes', 'Yes'),
+        ('No', 'No'),
+    )
     clearance = models.ForeignKey(Clearance, on_delete=models.CASCADE)
     reviewer = models.ForeignKey(User, on_delete=models.CASCADE)
-    approved = models.BooleanField(default=False)    
+    approved = models.CharField(max_length=10, choices=choices)
     reason = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
