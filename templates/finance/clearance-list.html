@@ -14,8 +14,7 @@
                 <tr>
                   <th scope="col">Id</th>
                   <th scope="col">Email</th>
-                  <th scope="col">First Name</th>
-                  <th scope="col">Last Name</th>
+                  <th scope="col">Full Name</th>
                   <th scope="col">Requested</th>
                   <th scope="col">Status</th>
                   <th scope="col">Complete</th>
@@ -27,16 +26,23 @@
                 <tr>
                   <th scope="row">{{clearance.id}}</th>
                   <td>{{clearance.student.user.email}}</td>
-                  <td>{{clearance.student.user.first_name}}</td>
-                  <td>{{clearance.student.user.last_name}}</td>
+                  <td>
+                    {{clearance.student.user.first_name}}
+                    {{clearance.student.user.last_name}}
+                  </td>
                   <td>{{clearance.initiated_at}}</td>
                   <td>{{clearance.status}}</td>
                   {% if clearance.completed %}
-                  <td>Completed</td>
+                  <td>Yes</td>
                   {% else %}
-                  <td>In progress</td>
+                  <td>No</td>
                   {% endif %}
-                  <td><a href="clearance-details/{{clearance.id}}">></a></td>
+                  <td>
+                    <a
+                      href="{% url 'finance_clearance_details_view' pk=clearance.id %}"
+                      >></a
+                    >
+                  </td>
                 </tr>
                 {% endfor %}
               </tbody>

@@ -26,9 +26,9 @@
                             <td>{{clearance.initiated_at}}</td>
                             <td>{{clearance.status}}</td>
                             {% if clearance.completed %}
-                            <td>Completed</td>
+                            <td>Yes</td>
                             {% else %}
-                            <td>In progress</td>
+                            <td>No</td>
                             {% endif %}
                             <td><a href="clearance-details/{{clearance.id}}">></a></td>
                         </tr>                  

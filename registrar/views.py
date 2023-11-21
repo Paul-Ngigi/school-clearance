@@ -84,13 +84,11 @@ class ReviewClearance(View):
             approved = form.cleaned_data.get('approved')
             reason = form.cleaned_data.get('reason')
             review = Review.objects.create(
-                clearance=clearance, reviewer=user, approved=approved, reason=reason)
-            print('done')
-            print(review)
+                clearance=clearance, reviewer=user, approved=approved, reason=reason)            
             clearance = Clearance.objects.get(id=pk)
             clearance.status = "Registrar Reviewed"
-            clearance.save()         
-            print(clearance)
+            clearance.completed = True
+            clearance.save()                     
             return redirect('registrar_clearance_details_view', pk)
         context = {
             'title': self.title,

@@ -1,4 +1,4 @@
-{% extends 'registrar/base.html' %} {% block content %}
+{% extends 'dos/base.html' %} {% block content %}
 <div class="container my-5">
   <div class="row">
     <h4 class="fw-bold">Clearance Details</h4>
@@ -28,63 +28,52 @@
             </div>
           </div>
           <div class="row">
-            {% if not hasBeenReviewed %}
             <div class="col-md-4">
-              <a href="{% url 'dos_initiate_view' pk=clearance.id %}" class="btn btn-outline-dark">Initiate Review</a>
+              <a
+                href="{% url 'dos_review_view' pk=clearance.id %}"
+                class="btn btn-outline-dark"
+                >Initiate Review</a
+              >
             </div>
-            {% else %}
-            <div class="col-md-4">
-              <div class="alert alert-warning" role="alert">
-                A registrar has already reviewed this clearance request
-              </div>            
-            </div>
-            {% endif %}
           </div>
           <hr />
           <div class="row">
-            <h5>Reviews</h5>            
+            <h5>Reviews</h5>
             {% if reviews|length > 0 %}
             <div class="card">
               <div class="card-body">
-                {% for review in reviews %}
                 <table class="table mt-3">
                   <thead>
-                  <tr>                      
+                    <tr>
                       <th scope="col">Date</th>
-                      <th scope="col">Reviewer Email</th>                                      
+                      <th scope="col">Reviewer Email</th>
                       <th scope="col">Review Role</th>
                       <th scope="col">Approved</th>
-                      <th scope="col">Rejected</th>                                            
-                  </tr>
+                      <th scope="col">Reason</th>
+                    </tr>
                   </thead>
-                  <tbody>                      
-                      {% for review in reviews %} 
-                      <tr>                          
-                          <td>{{review.created_at}}</td>
-                          <td>{{review.reviewer.email}}</td>                          
-                          <td>{{review.reviewer.role}}</td>                                                    
-                          {% if review.approved %}
-                          <td>Yes</td>
-                          {% else %}
-                          <td>No</td>
-                          {% endif %}
-                          {% if review.rejected %}
-                          <td>Yes</td>
-                          {% else %}
-                          <td>No</td>
-                          {% endif %}                          
-                          <td><a href="clearance-details/{{clearance.id}}">></a></td>
-                      </tr>                  
-                      {% endfor %}                    
+                  <tbody>
+                    {% for review in reviews %}
+                    <tr>
+                      <td>{{review.created_at}}</td>
+                      <td>{{review.reviewer.email}}</td>
+                      <td>{{review.reviewer.role}}</td>
+                      {% if review.approved %}
+                      <td>Yes</td>
+                      {% else %}
+                      <td>No</td>
+                      {% endif %}
+                      <td>{{review.reason}}</td>
+                    </tr>
+                    {% endfor %}
                   </tbody>
-              </table>
-                {% endfor %}
+                </table>
               </div>
             </div>
             {% else %}
             <div class="alert alert-warning" role="alert">
               There is no review yet for this clearance request
-            </div>            
+            </div>
             {% endif %}
           </div>
         </div>
