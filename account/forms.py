@@ -23,3 +23,6 @@ class UserForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('email', 'first_name', 'last_name', 'password1', 'password2', 'role', 'sex', 'id_number')                
+
+class ResetPasswordForm(forms.Form):    
+    password = forms.CharField(required=True)   

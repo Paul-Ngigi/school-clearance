@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.views.generic import View
 from clearance.models import Clearance, Review
 from .forms import ReviewForm
+from utils.views import send_mails
 
 # Create your views here.
 
@@ -88,7 +89,17 @@ class ReviewClearance(View):
             clearance = Clearance.objects.get(id=pk)
             clearance.status = "Registrar Reviewed"
             clearance.completed = True
-            clearance.save()                     
+            clearance.save()   
+            student = clearance.student
+            student_name = student.user.first_name
+            send_mails(
+                request,
+                'mailing/clearance-reviewed.html',
+                'Clearance Reviewed by Registrar',
+                [student.user.email],
+                {'user': user, 'clearance': clearance,
+                    'review': review, 'student_name': student_name}
+            )                  
             return redirect('registrar_clearance_details_view', pk)
         context = {
             'title': self.title,

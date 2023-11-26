@@ -29,4 +29,5 @@ urlpatterns = [
     path('library/', include('library.urls')),
     path('registrar/', include('registrar.urls')),
     path('sae/', include('sae.urls')),
+    path('utils/', include('utils.urls')),
 ]

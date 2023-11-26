@@ -4,8 +4,11 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.views.generic import View
 from clearance.models import Clearance, Review
 from .forms import ReviewForm
+from utils.views import send_mails
 
 # Create your views here.
+
+
 class DetailsView(View):
     template_name = 'sae/details.html'
     title = 'Details'
@@ -82,10 +85,20 @@ class ReviewClearance(View):
             approved = form.cleaned_data.get('approved')
             reason = form.cleaned_data.get('reason')
             review = Review.objects.create(
-                clearance=clearance, reviewer=user, approved=approved, reason=reason)            
+                clearance=clearance, reviewer=user, approved=approved, reason=reason)
             clearance = Clearance.objects.get(id=pk)
-            clearance.status = "Sports & Entertainment Reviewed"            
-            clearance.save()                     
+            clearance.status = "Sports & Entertainment Reviewed"
+            clearance.save()
+            student = clearance.student
+            student_name = student.user.first_name
+            send_mails(
+                request,
+                'mailing/clearance-reviewed.html',
+                'Clearance Reviewed by Sports & Entertainment',
+                [student.user.email],
+                {'user': user, 'clearance': clearance,
+                    'review': review, 'student_name': student_name}
+            )
             return redirect('sae_clearance_details_view', pk)
         context = {
             'title': self.title,
