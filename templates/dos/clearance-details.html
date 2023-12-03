@@ -58,11 +58,7 @@
                       <td>{{review.created_at}}</td>
                       <td>{{review.reviewer.email}}</td>
                       <td>{{review.reviewer.role}}</td>
-                      {% if review.approved %}
-                      <td>Yes</td>
-                      {% else %}
-                      <td>No</td>
-                      {% endif %}
+                      <td>{{review.approved}}</td>
                       <td>{{review.reason}}</td>
                     </tr>
                     {% endfor %}
