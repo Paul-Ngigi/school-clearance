@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model, authenticate, login, logout
 from django.views.generic import View
-from .forms import LoginForm, UserForm, ResetPasswordForm
+from .forms import LoginForm, UserForm
 from django.contrib import messages
 from utils.views import send_mails
+from django.urls import reverse_lazy
+from django.contrib.auth.views import PasswordResetView
+from django.contrib.messages.views import SuccessMessageMixin
 # Models
 from student.models import Student
 from cod.models import CHAIRMAN_OF_DEPARTMENT
@@ -38,6 +41,11 @@ class SignUpView(View):
             first_name = form.cleaned_data.get('first_name')
             email = form.cleaned_data.get('email')            
             form.save()
+            student = User.objects.get(email=email) 
+            print(student.role)           
+            student.role = 'STUDENT'
+            student.save()
+            print(student.role)           
             send_mails(
                 request,
                 'mailing/welcome.html',
@@ -163,34 +171,12 @@ class SignOutView(View):
         return redirect('login_view')
 
 
-
-class ResetPasswordView(View):
-    """
-    Reset view
-    """
-    title = 'reset-password'
-    template_name = 'accounts/reset-password.html'
-
-    def get(self, request, *args, **kwargs):
-        form = ResetPasswordForm()
-        context = {"title": self.title, "form": form}
-        if request.user.is_authenticated:
-            return redirect('home_view')
-        return render(request, self.template_name, context)
-
-    def post(self, request, *args, **kwargs):
-        form = ResetPasswordForm(request.POST)
-        if form.is_valid():
-            password = form.cleaned_data.get('password')
-            email = form.cleaned_data.get('email')            
-            form.save()
-            send_mails(
-                request,
-                'mailing/welcome.html',
-                'Welcome to school clearance',              
-                [email],
-                {'first_name': "first_name"}
-            )
-            return redirect('login_view')
-
-        return render(request, 'accounts/signup.html', {"form": form})
+class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
+    template_name = 'accounts/password_reset.html'
+    email_template_name = 'accounts/password_reset_email.html'
+    subject_template_name = 'accounts/password_reset_subject.txt'
+    success_message = "We've emailed you instructions for setting your password, " \
+                      "if an account exists with the email you entered. You should receive them shortly." \
+                      " If you don't receive an email, " \
+                      "please make sure you've entered the address you registered with, and check your spam folder."
+    success_url = reverse_lazy('home_view')

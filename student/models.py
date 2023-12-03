@@ -8,6 +8,8 @@ class Student(models.Model):
         ('SECOND', 'second'),
         ('THIRD', 'third'),
         ('FOURTH', 'fourth'),       
+        ('FIFTH', 'fifth'),
+        ('SIXTH', 'sixth'),
     )  
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     school = models.CharField(max_length=30, blank=False)    

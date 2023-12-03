@@ -80,8 +80,9 @@ class ReviewClearance(View):
 
         user = request.user
         if form.is_valid() and clearance is not None and user is not None:
-            approved = form.cleaned_data.get('approved')
+            approved = form.cleaned_data.get('approved')            
             reason = form.cleaned_data.get('reason')
+            print(f"approved={approved}")
             review = Review.objects.create(
                 clearance=clearance, reviewer=user, approved=approved, reason=reason)            
             clearance = Clearance.objects.get(id=pk)

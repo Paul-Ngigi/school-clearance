@@ -1,6 +1,12 @@
+{% load static %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3">
   <div class="container">
-    <a class="navbar-brand" href="{% url 'home_view' %}"><span class="fw-bold">C</span>learance</a>
+    <a class="navbar-brand" href="{% url 'home_view' %}"
+      ><img
+        src="{% static 'images/jkuat.jpeg' %}"
+        alt="reading"      
+        height="60"        
+    /></a>
     <button
       class="navbar-toggler"
       type="button"
@@ -45,35 +51,21 @@
           >
         </li>
         {% endif %} {% if not user.is_authenticated %}
-        <li class="nav-item dropdown">
+        <li class="nav-item">
           <a
-            class="nav-link mx-2 dropdown-toggle"
-            href="#"
-            id="navbarDropdownMenuLink"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
+            class="nav-link mx-2 active"
+            aria-current="page"
+            href="{% url 'login_view'%}"
+            >Login</a
           >
-            <i class="fa-solid fa-user"></i>
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li>
-              <a
-                href="{% url 'login_view'%}"
-                class="btn btn-outline-dark dropdown-item"
-              >
-                Login
-              </a>
-            </li>
-            <li>
-              <a
-                class="btn btn-outline-dark dropdown-item"
-                href="{% url 'signup_view'%}"
-              >
-                Sign Up
-              </a>
-            </li>
-          </ul>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link mx-2 active"
+            aria-current="page"
+            href="{% url 'signup_view'%}"
+            >Register</a
+          >
         </li>
         {% endif %}
       </ul>

@@ -12,17 +12,20 @@ To get the code..
   ```
 2. Move to the folder and install requirements
   ```bash
-  cd school-clearance
   python -m venv virtual
-  virtual/Scripts/activate.ps1
+  ```
+  ```bash  
+  virtual/Scripts/activate.ps1  
+  ```
+  ```bash  
   pip install -r requirements.txt
   ```
 
 3. Running the application
   ```bash
+  virtual/Scripts/activate.ps1  
+  ```
+  ```bash
   python manage.py runserver
   ```
 Open the application on your browser `127.0.0.1:8000`.
-
-
-Error: Command '['C:\\Users\\user\\Documents\\project\\school-clearance\\virtual\\Scripts\\python.exe', '-m', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.   
